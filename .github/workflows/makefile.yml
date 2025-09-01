@@ -16,9 +16,6 @@ jobs:
     - name: Install LaTeX
       run: sudo apt-get update && sudo apt-get install -y texlive-latex-base
       
-    - name: Install pdflatex
-      run: sudo apt-get update && sudo apt-get install -y pdflatex
-
     - name: Make resume
       run: make
 
