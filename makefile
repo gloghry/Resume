@@ -1,4 +1,4 @@
 resume.pdf: resume.tex
-	latexmk --pdf resume.tex
+	pdflatex resume.tex
 clean:
-	latexmk -C
+	rm resume.aux resume.log resume.out resume.pdf
