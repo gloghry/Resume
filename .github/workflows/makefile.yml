@@ -23,6 +23,17 @@ jobs:
       
     - name: Make resume
       run: make
+      
+    - name: Install GitHub CLI
+      run: sudo apt-get install -y gh
+
+    - name: Delete Previous Latest
+      run: |
+        gh release delete latest --yes || true
+        git tag -d latest || true
+        git push --delete origin latest || true
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Publish Latest
       uses: softprops/action-gh-release@v2
