@@ -1,0 +1,17 @@
+# Whitelist style ignore file
+
+# Ignore everything
+*
+
+# Don't ignore the ignore
+!.gitignore
+
+# Don't ignore these files
+!makefile
+!start.sh
+!README.md
+!resume.tex
+!resume.cls
+
+# Don't ignore these directories
+!.github/workflows
