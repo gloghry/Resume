@@ -4,10 +4,11 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - "resume.tex"
+      - 'resume.tex'
   pull_request:
     branches: [ "main" ]
-      - "resume.tex"
+    paths:
+      - 'resume.tex'
 
 jobs:
   build:
