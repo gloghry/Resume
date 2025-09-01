@@ -6,7 +6,7 @@ on:
     paths:
       - 'resume.tex'
       - 'resume.cls'
-      - '.github/workflows/makefile.yml'
+      - '.github/workflows/build_latest.yml'
 
 jobs:
   build:
