@@ -3,7 +3,9 @@ name: Resume PDF Build
 on:
   push:
     branches: [ "main" ]
-    paths: [ 'resume.tex' ]
+    paths:
+      - 'resume.tex'
+      - 'resume.cls'
 
 jobs:
   build:
