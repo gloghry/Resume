@@ -19,9 +19,14 @@ jobs:
     - name: Make resume
       run: make
 
-    - name: Upload PDF artifact
-      uses: actions/upload-artifact@v4
+    - name: Publish Latest
+      uses: softprops/action-gh-release@v2
       with:
-        name: resume-pdf
-        path: resume.pdf
-
+        tag_name: latest
+        name: Latest Resume
+        body: "Automatically generated resume PDF"
+        files: resume.pdf
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
