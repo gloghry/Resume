@@ -1,5 +1,9 @@
 #!/bin/bash
 
+text_editor_app="gnome-text-editor"
+text_editor_ops="--new-window"
+pdf_viewer_app="xdg-open"
+
 function cleanup() {
     echo -e "\n\nClosing remaining jobs..."
     for job in $(jobs -p); do
@@ -23,14 +27,14 @@ LATEXMK_PID=$!
 echo "latexmk (LaTeX Compiler) started with PID $LATEXMK_PID."
 
 # Open the PDF Viewer for latexmk to edit
-xdg-open resume.pdf &
+$pdf_viewer_app resume.pdf &
 PDFVIEWER_PID=$!
-echo "PDF Viewer opened in a new window."
+echo "$dpf_viewer_app (PDF Viewer) opened in a new window."
 
 # Open gedit in a new window
-gedit --new-window resume.tex &
+$text_editor_app $text_editor_ops resume.tex &
 GEDIT_PID=$!
-echo "gedit (Text Editor) opened in a new window."
+echo "$text_editor_app (Text Editor) opened in a new window."
 
 # Wait a moment to ensure the applications are up
 sleep 2
