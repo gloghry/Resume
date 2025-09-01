@@ -1,4 +1,4 @@
-make: resume.tex
-	latexmk --pdf -pvc resume.tex
+resume.pdf: resume.tex
+	latexmk --pdf resume.tex
 clean:
-	resume.aux resume.fdb_latexmk  resume.fls  resume.log  resume.out  resume.pdf
+	latexmk -C
