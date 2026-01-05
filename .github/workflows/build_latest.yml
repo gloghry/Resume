@@ -28,22 +28,35 @@ jobs:
     - name: Install GitHub CLI
       run: sudo apt-get install -y gh
 
-    - name: Delete Previous Latest
-      run: |
-        gh release delete latest --yes || true
-        git tag -d latest || true
-        git push --delete origin latest || true
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Publish Latest
-      uses: softprops/action-gh-release@v2
-      with:
-        tag_name: latest
-        name: Resume PDF
-        body: "Automatically generated resume PDF"
-        files: resume.pdf
-        draft: false
-        prerelease: false
+    - name: Delete Previous "latest" Release
+      uses: actions/github-script@v6
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        script: |
+          const tag = 'latest';
+          const rels = await github.rest.repos.listReleases({...context.repo});
+          for (const r of rels.data) if (r.tag_name === tag) await github.rest.repos.deleteRelease({...context.repo, release_id: r.id});
+          try { await github.git.deleteRef({...context.repo, ref: `tags/${tag}`}); } catch (e) {}
+
+    - name: Create "latest" Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: latest
+        release_name: Resume PDF
+        body: Automatically generated resume PDF
+        draft: false
+        prerelease: false
+
+    - name: Upload Resume PDF to Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./resume.pdf
+        asset_name: resume.pdf
+        asset_content_type: application/pdf
