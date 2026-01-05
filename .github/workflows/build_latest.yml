@@ -16,38 +16,39 @@ jobs:
       contents: write 
 
     steps:
-    - name: Checkout repository
+    - name: Checkout Repository
       uses: actions/checkout@v4
 
     - name: Install LaTeX
       run: sudo apt-get update && sudo apt-get install -y texlive-latex-base texlive-latex-recommended
       
-    - name: Make resume
+    - name: Make Resume
       run: make
-      
-    - name: Install GitHub CLI
-      run: sudo apt-get install -y gh
 
-    - name: Delete Previous "latest" Release
+    - name: Set release tag
+      run: echo "RELEASE_TAG=$(date +%Y-%m-%d)" >> $GITHUB_ENV
+
+    - name: Delete Non Unique Release and Tag
       uses: actions/github-script@v6
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        RELEASE_TAG: ${{ env.RELEASE_TAG }}
       with:
         script: |
-          const tag = 'latest';
+          const tag = process.env.RELEASE_TAG;
           const rels = await github.rest.repos.listReleases({...context.repo});
           for (const r of rels.data) if (r.tag_name === tag) await github.rest.repos.deleteRelease({...context.repo, release_id: r.id});
           try { await github.git.deleteRef({...context.repo, ref: `tags/${tag}`}); } catch (e) {}
 
-    - name: Create "latest" Release
+    - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: latest
-        release_name: Resume PDF
-        body: Automatically generated resume PDF
+        tag_name: ${{ env.RELEASE_TAG }}
+        release_name: Resume PDF ${{ env.RELEASE_TAG }}
+        body: Automatically generated resume PDF on ${{ env.RELEASE_TAG }}
         draft: false
         prerelease: false
 
