@@ -1,125 +1,73 @@
 % Document source code gathered on:
 % https://www.overleaf.com/latex/templates/faangpath-simple-template/npsfpdqnxmbc
 % Original owner and attributions can be found there.
-% directory must include resume.cls to compile (the class file)
+% directory must include resume.cls to compile
 
-% Issue 1 needs a file changed to kick off a runner
-% TODO: store artifacts somewhere
+\documentclass{resume}
 
-
-\documentclass{resume} % Use the custom resume.cls style
-
-\usepackage[left=0.4 in,top=0.4in,right=0.4 in,bottom=0.4in]{geometry} % Document margins
+\usepackage[left=0.4 in,top=0.4in,right=0.4 in,bottom=0.4in]{geometry}
 \newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}}
 \newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+
 \name{Garett Loghry}
-% You can merge both of these into a single line, if you do not have a website.
-\address{+1(360) 931-2390 \\ Vancouver, WA}
-\address{\href{https://github.com/gloghry}{github.com/gloghry} \\ \href{https://www.linkedin.com/in/gloghry/}{linkedin.com/in/gloghry/} \\ \href{https://gitlab.com/gloghry}{gitlab.com/gloghry}}
+\address{+1(360) 931-2390 \ Vancouver, WA}
+\address{\href{https://github.com/gloghry}{github.com/gloghry} \ \href{https://www.linkedin.com/in/gloghry/}{linkedin.com/in/gloghry/} \ \href{https://gitlab.com/gloghry}{gitlab.com/gloghry}}
 \address{\href{mailto:loghry.g@gmail.com}{loghry.g@gmail.com}}
 
 \begin{document}
-	%----------------------------------------------------------------------------------------
-	%	SUMMARY
-	%----------------------------------------------------------------------------------------
-	\begin{rSection}{SUMMARY}
-		I am a software engineer who has a background in embedded engineering and software development.
-	\end{rSection}
 
-	%----------------------------------------------------------------------------------------
-	% 	TECHNICAL STRENGTHS	
-	%----------------------------------------------------------------------------------------
-	\begin{rSection}{TECHINICAL SKILLS}
+%----------------------------------------------------------------------------------------
+% SUMMARY
+%----------------------------------------------------------------------------------------
+\begin{rSection}{SUMMARY}
+Firmware-focused software engineer with experience developing embedded software, vehicle diagnostic tools, and hardware-connected systems for industrial equipment. Skilled in C, Python, MATLAB/Simulink, CAN, CANopen, J1939, UDS over CAN, testing/debugging, technical documentation, and cross-functional development.
+\end{rSection}
 
-		\begin{tabular}{ @{} >{\bfseries}l @{\hspace{6ex}} l }
-			Programming Languages 	& C, C$^\sharp$, Python, Java, Bash, Rust, MATLAB, Kotlin. \\
-		\end{tabular}
+%----------------------------------------------------------------------------------------
+% TECHNICAL SKILLS
+%----------------------------------------------------------------------------------------
+	\begin{rSection}{TECHNICAL SKILLS}
 
 		\begin{tabular}{ @{} >{\bfseries} l @{\hspace{6ex}} l @{\hspace{6ex}} l}
-			Experienced in	 	& Embedded Systems	& CAN Protocol, Git, SVN, System  Architecture. \\
-						& Robotics 		& ROS2, NVIDIA Jetson, Raspberry Pi. \\
-						& Machine Learning 	& NVIDIA Isaac Ecosystem, PyTorch, ONNX. \\
-						& CI/CD 		& Jenkins, JFrog, GitHub Actions, Azure DevOps. \\
+    Languages               & C, Python, C\#, Bash, MATLAB, Java, Rust, Kotlin. \\
+    Firmware / Embedded     & Embedded C, MATLAB/Simulink, CAN, CANopen, J1939, UDS over CAN. \\
+    Systems / Applications  & Vehicle diagnostics, sensor integration, C\#/.NET, MVVM, MVP, Linux. \\
+    Tools / Methods         & Git, SVN, Jenkins, GitHub Actions, Azure DevOps, JFrog, CI/CD, Agile/Scrum. \\
 		\end{tabular}
 	\end{rSection}
 
-	%----------------------------------------------------------------------------------------
-	%	WORK EXPERIENCE
-	%----------------------------------------------------------------------------------------
-	\begin{rSection}{EXPERIENCE}
-		\textbf{Embedded Software Engineer} \hfill Aug 2024 - Present \\
-		Hyster-Yale Materials Handling - \textit{Innovation Team} \hfill \textit{Clackamas, OR}
-		\begin{itemize} \itemsep -5pt {}
-			\item OAS
-			\begin{itemize} \itemsep -5pt {}
-				\item Wrote and maintained C code and MATLAB models related to Hyster-Yale's ``Operator Assist System'' (OAS). 
-				\item You can see the work we do with OAS at \href{https://www.hyster.com/en-us/north-america/technology/telematics/hyster-reaction/}{Hyster Reaction} and \href{https://www.yale.com/en-us/north-america/technology/yale-reliant/}{Yale Reliant}.
-				\item Contributed to technical documentation and production release processes to ensure product quality, a robust life-cycle, and ensure industry standards were met.
-				\item Worked with cross-functional teams of other engineers, testers, and managers to shorten development times, enhance product knowledge, and reduce the ``bus factor''.
-            \end{itemize}	
-			\item Autonomous Ground Vehicle (AGV) Prototype
-            \begin{itemize} \itemsep -5pt {}
-				\item Worked on a small team to build an Autonomous Ground Vehicle (AGV) prototype using the NVIDIA Isaac ecosystem and ROS2.
-				\item Trained custom stabilization model using IMU data to improve the AGV's stability on uneven terrain and to optimize speed.
-				\item Integrated various sensors, including LiDAR and cameras, to enhance the AGV's environmental awareness, obstacle avoidance, and object detection capabilities.
-			\end{itemize}			
-		\end{itemize}
+%----------------------------------------------------------------------------------------
+% EXPERIENCE
+%----------------------------------------------------------------------------------------
+\begin{rSection}{EXPERIENCE}
 
-		Hyster-Yale Materials Handling - \textit{Global Tools Team} \hfill \textit{Fairview, OR}
-		\begin{itemize} \itemsep -5pt {}
-			\item Developed and maintained C$^\sharp$ applications used for internal tools that interface with Hyster and Yale forklifts.
-			\item Worked directly with cross-functional teams to gather requirements, design features, and implement solutions that improved tool efficiency and user experience.
-			\item Implemented automated testing and continuous integration processes to enhance software reliability and reduce deployment times.
-		\end{itemize}
+    \textbf{Embedded Software Engineer} \hfill Aug 2024 - Present \\
+    Hyster-Yale Materials Handling - \textit{Innovation \& Global Tools Teams} \hfill \textit{Fairview, OR}
+    \begin{itemize} \itemsep -5pt {}
+        \item Develop and maintain C code and MATLAB/Simulink models for Operator Assist System features used on Hyster Reaction and Yale Reliant industrial vehicle platforms.
+        \item Support firmware lifecycle activities including implementation, testing, debugging, technical documentation, release preparation, and production support.
+        \item Contribute to hardware-connected vehicle development involving sensors, control logic, CAN-based fault diagnostics, firmware flashing, and system-level debugging.
+        \item Develop and maintain C\#/.NET engineering tools that interface with Hyster and Yale forklift systems and support diagnostics workflows.
+        \item Build and support tool features involving vehicle communication and CAN-based data exchange including CANopen, J1939, and UDS.
+        \item Improve engineering workflows through Python scripting, automated testing, CI/CD, documentation, and cross-functional collaboration with software, controls, test, and product teams.
+        \item Prototyped autonomous ground vehicle features using ROS2, NVIDIA Isaac tools, Jetson/Raspberry Pi hardware, LiDAR, cameras, and IMU data.
+    \end{itemize}
 
-		\textbf{Intern} \hfill Sept 2022 - May 2023 \\
-		Seasalt.AI \hfill \textit{Remote}
-		\begin{itemize} \itemsep -5pt {} 
-			\item Helped build Vietnamese and Indonesian Language Models used for Automated Speech Recognition.
-			\item Used Kaldi and K2 to build Acoustic Models.
-			\item Used Time Delay Neural Network to retrain our Vietnamese model and minimize Word Error Rate.
-		\end{itemize}
-	
-		\textbf{Assistant Manager} \hfill Oct 2013 - Jan 2025 \\
-		Music World \hfill \textit{Vancouver, WA}
-		\begin{itemize} \itemsep -5pt {} 
-			\item Managed small team of $\sim$4.
-			\item Regularly trained new hires and mentored associates. 
-			\item Created training materials and documentation to share knowledge and speed up on-boarding.
-		\end{itemize}
-	\end{rSection} 
+    \textbf{Intern} \hfill Sept 2022 - May 2023 \\
+    Seasalt.AI \hfill \textit{Remote}
+    \begin{itemize} \itemsep -5pt {}
+        \item Built and retrained Vietnamese and Indonesian automated speech recognition models using Kaldi and K2.
+        \item Evaluated model performance using Word Error Rate and iterated on training workflows to improve recognition accuracy.
+    \end{itemize}
+\end{rSection}
 
-	%----------------------------------------------------------------------------------------
-	%	Projects
-	%----------------------------------------------------------------------------------------
-	
-	% \begin{rSection}{PROJECTS}
-
-		% Website creation
-		% Resume repo with actions
-		%\textbf{Using SPI with GPIO Expander:} Working with a Raspberry Pi Nano and a GPIO expander, I wrote C code to communicate between the two devices using bit-banging. Device specifics can be found in my GitHub repository. You can see the code and project report write up \href{https://github.com/gloghry/CS466_sub/tree/working/lab4}{here}.
-
-	% \end{rSection} 
-
-
-	%----------------------------------------------------------------------------------------
-	%	EDUCATION
-	%----------------------------------------------------------------------------------------
-	\begin{rSection}{Education}
-		{\bf Bachelor of Computer Science} \hfill {Fall 2023} \\
-		\medskip{\emph{Washington State University} (WSU) \hfill{\emph{Vancouver, WA}}}\\
-		Relevant Coursework: Embedded Systems, Operating Systems, Assembly, Systems Programming, Software Design, Algorithms, Digital Forensics, Object Oriented Design.
-	\end{rSection}
-
-	%----------------------------------------------------------------------------------------
-	%	REFERENCES
-	%----------------------------------------------------------------------------------------
-	\vfill
-	\begin{center}
-		% \par{\scriptsize{References supplied upon request}}
-	\end{center}
-
+%----------------------------------------------------------------------------------------
+% EDUCATION
+%----------------------------------------------------------------------------------------
+\begin{rSection}{EDUCATION}
+    {\bf Bachelor of Science in Computer Science} \hfill {Fall 2023} \\
+    \medskip{\emph{Washington State University} \hfill{\emph{Vancouver, WA}}}\\
+    Relevant Coursework: Embedded Systems, Operating Systems, Assembly, Systems Programming, Software Design, Algorithms, Digital Forensics, Object-Oriented Design.
+\end{rSection}
 
 \end{document}
-
-
