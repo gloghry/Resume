@@ -75,8 +75,8 @@
 % \printname is used to print the name as a page header
 \def \printname {
   \begingroup
-    \hfil{\MakeUppercase{\namesize\bf \@name}}\hfil
-    \nameskip\break
+    \centerline{\MakeUppercase{\namesize\bf \@name}}
+    \par\nameskip
   \endgroup
 }
 

@@ -2,62 +2,145 @@ name: Resume PDF Build
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
+  pull_request:
+    branches: [main]
     paths:
       - 'resume.tex'
       - 'resume.cls'
+      - 'makefile'
       - '.github/workflows/build_latest.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write 
-
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Install LaTeX
-      run: sudo apt-get update && sudo apt-get install -y texlive-latex-base texlive-latex-recommended
-      
-    - name: Make Resume
-      run: make
+      - name: Install LaTeX
+        run: sudo apt-get update && sudo apt-get install -y texlive-latex-base texlive-latex-recommended
 
-    - name: Set release tag
-      run: echo "RELEASE_TAG=$(date +%Y-%m-%d)" >> $GITHUB_ENV
+      - name: Build resume
+        run: make
 
-    - name: Delete Non Unique Release and Tag
-      uses: actions/github-script@v6
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        RELEASE_TAG: ${{ env.RELEASE_TAG }}
-      with:
-        script: |
-          const tag = process.env.RELEASE_TAG;
-          const rels = await github.rest.repos.listReleases({...context.repo});
-          for (const r of rels.data) if (r.tag_name === tag) await github.rest.repos.deleteRelease({...context.repo, release_id: r.id});
-          try { await github.git.deleteRef({...context.repo, ref: `tags/${tag}`}); } catch (e) {}
+      - name: Save PDF for review and publishing
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume-pdf
+          path: resume.pdf
+          if-no-files-found: error
+          retention-days: 30
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ env.RELEASE_TAG }}
-        release_name: Resume PDF ${{ env.RELEASE_TAG }}
-        body: Automatically generated resume PDF on ${{ env.RELEASE_TAG }}
-        draft: false
-        prerelease: false
+  publish:
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: resume-latest-release
+      cancel-in-progress: false
+    steps:
+      - name: Download built PDF
+        uses: actions/download-artifact@v4
+        with:
+          name: resume-pdf
 
-    - name: Upload Resume PDF to Release
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./resume.pdf
-        asset_name: resume.pdf
-        asset_content_type: application/pdf
+      - name: Update latest release
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+            const repo = context.repo;
+            const tag = 'latest';
+            // This job holds the release concurrency lock. Check ancestry and
+            // the current branch here, since build completion order can differ
+            // from commit order and historical workflow runs can be rerun.
+            let publishedRef;
+            try {
+              ({data: publishedRef} = await github.rest.git.getRef({
+                ...repo, ref: `tags/${tag}`
+              }));
+            } catch (error) {
+              if (error.status !== 404) throw error;
+            }
+            if (publishedRef) {
+              const {data: comparison} = await github.rest.repos.compareCommitsWithBasehead({
+                ...repo, basehead: `${tag}...${context.sha}`
+              });
+              if (!['ahead', 'identical'].includes(comparison.status)) {
+                core.notice(`Skipping ${context.sha}: latest is newer or has diverged.`);
+                return;
+              }
+            }
+            const {data: main} = await github.rest.git.getRef({...repo, ref: 'heads/main'});
+            if (main.object.sha !== context.sha) {
+              core.notice(`Skipping ${context.sha}: main now points to ${main.object.sha}.`);
+              return;
+            }
+
+            let release;
+            try {
+              ({data: release} = await github.rest.repos.getReleaseByTag({...repo, tag}));
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              ({data: release} = await github.rest.repos.createRelease({
+                ...repo, tag_name: tag, target_commitish: context.sha,
+                name: 'Latest resume PDF', draft: true
+              }));
+            }
+
+            const assets = await github.paginate(github.rest.repos.listReleaseAssets, {
+              ...repo, release_id: release.id
+            });
+            const previous = assets.find(asset => asset.name === 'resume.pdf');
+            const suffix = `${context.runId}-${process.env.GITHUB_RUN_ATTEMPT}`;
+            // Finish the upload before touching the existing download.
+            const {data: uploaded} = await github.rest.repos.uploadReleaseAsset({
+              ...repo, release_id: release.id,
+              name: `resume-${suffix}.pdf`,
+              data: fs.readFileSync('resume.pdf'),
+              headers: {'content-type': 'application/pdf'}
+            });
+            if (previous) {
+              await github.rest.repos.updateReleaseAsset({
+                ...repo, asset_id: previous.id, name: `resume-previous-${suffix}.pdf`
+              });
+            }
+            try {
+              await github.rest.repos.updateReleaseAsset({
+                ...repo, asset_id: uploaded.id, name: 'resume.pdf'
+              });
+            } catch (error) {
+              if (previous) {
+                await github.rest.repos.updateReleaseAsset({
+                  ...repo, asset_id: previous.id, name: 'resume.pdf'
+                });
+              }
+              throw error;
+            }
+
+            // Keep the moving tag consistent with the PDF's source commit.
+            try {
+              await github.rest.git.getRef({...repo, ref: `tags/${tag}`});
+              await github.rest.git.updateRef({
+                ...repo, ref: `tags/${tag}`, sha: context.sha, force: false
+              });
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              await github.rest.git.createRef({
+                ...repo, ref: `refs/tags/${tag}`, sha: context.sha
+              });
+            }
+            await github.rest.repos.updateRelease({
+              ...repo, release_id: release.id, name: 'Latest resume PDF',
+              body: `Built from commit ${context.sha}.`, draft: false, make_latest: 'true'
+            });
+            if (previous) {
+              await github.rest.repos.deleteReleaseAsset({...repo, asset_id: previous.id});
+            }

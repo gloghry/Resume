@@ -1,125 +1,67 @@
-% Document source code gathered on:
+% Based on the FAANGPath simple resume template.
 % https://www.overleaf.com/latex/templates/faangpath-simple-template/npsfpdqnxmbc
-% Original owner and attributions can be found there.
-% directory must include resume.cls to compile (the class file)
+\documentclass{resume}
+\usepackage[left=0.4in,top=0.4in,right=0.4in,bottom=0.4in]{geometry}
 
-% Issue 1 needs a file changed to kick off a runner
-% TODO: store artifacts somewhere
-
-
-\documentclass{resume} % Use the custom resume.cls style
-
-\usepackage[left=0.4 in,top=0.4in,right=0.4 in,bottom=0.4in]{geometry} % Document margins
-\newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}}
-\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
 \name{Garett Loghry}
-% You can merge both of these into a single line, if you do not have a website.
-\address{+1(360) 931-2390 \\ Vancouver, WA}
+\address{+1(360) 931-2390 \\ Vancouver, WA \\ \href{mailto:loghry.g@gmail.com}{loghry.g@gmail.com}}
 \address{\href{https://github.com/gloghry}{github.com/gloghry} \\ \href{https://www.linkedin.com/in/gloghry/}{linkedin.com/in/gloghry/} \\ \href{https://gitlab.com/gloghry}{gitlab.com/gloghry}}
-\address{\href{mailto:loghry.g@gmail.com}{loghry.g@gmail.com}}
 
 \begin{document}
-	%----------------------------------------------------------------------------------------
-	%	SUMMARY
-	%----------------------------------------------------------------------------------------
-	\begin{rSection}{SUMMARY}
-		I am a software engineer who has a background in embedded engineering and software development.
-	\end{rSection}
+\raggedright
+\begin{rSection}{Summary}
+Software engineer with experience writing embedded C, implementing communication protocols over CAN, and developing C\#/.NET tools for controller programming and diagnostics.
+\end{rSection}
 
-	%----------------------------------------------------------------------------------------
-	% 	TECHNICAL STRENGTHS	
-	%----------------------------------------------------------------------------------------
-	\begin{rSection}{TECHINICAL SKILLS}
+\begin{rSection}{Technical Skills}
+\textbf{Languages:} C, C\#, Python \\
+\textbf{Communications:} CAN, CANopen, proprietary controller protocols \\
+\textbf{Tools:} .NET, Git, Vector CAN hardware, CANalyzer \\
+\textbf{Testing:} CMock, NUnit, CAN trace analysis
+\end{rSection}
 
-		\begin{tabular}{ @{} >{\bfseries}l @{\hspace{6ex}} l }
-			Programming Languages 	& C, C$^\sharp$, Python, Java, Bash, Rust, MATLAB, Kotlin. \\
-		\end{tabular}
+\begin{rSection}{Professional Experience}
+\textbf{Hyster-Yale Materials Handling} \hfill Aug 2024 - Present \\
+Software Engineer 1
 
-		\begin{tabular}{ @{} >{\bfseries} l @{\hspace{6ex}} l @{\hspace{6ex}} l}
-			Experienced in	 	& Embedded Systems	& CAN Protocol, Git, SVN, System  Architecture. \\
-						& Robotics 		& ROS2, NVIDIA Jetson, Raspberry Pi. \\
-						& Machine Learning 	& NVIDIA Isaac Ecosystem, PyTorch, ONNX. \\
-						& CI/CD 		& Jenkins, JFrog, GitHub Actions, Azure DevOps. \\
-		\end{tabular}
-	\end{rSection}
+\textit{Global Tools Team} \hfill Jan 2026 - Present
+\begin{itemize}\itemsep -3pt
+\item Led implementation of a previously unsupported proprietary CAN programming protocol, transferring Intel HEX firmware data; own the flashing workflow and validate programming across physical controllers.
+\item Develop C\#/.NET desktop programming and diagnostic tools used in manufacturing; implement CANopen PDO packing and build harnesses and prototype connections for CAN controllers.
+\item Helped diagnose intermittent controller-programming failures involving master ECU contactor operation through CAN traffic analysis.
+\end{itemize}
 
-	%----------------------------------------------------------------------------------------
-	%	WORK EXPERIENCE
-	%----------------------------------------------------------------------------------------
-	\begin{rSection}{EXPERIENCE}
-		\textbf{Embedded Software Engineer} \hfill Aug 2024 - Present \\
-		Hyster-Yale Materials Handling - \textit{Innovation Team} \hfill \textit{Clackamas, OR}
-		\begin{itemize} \itemsep -5pt {}
-			\item OAS
-			\begin{itemize} \itemsep -5pt {}
-				\item Wrote and maintained C code and MATLAB models related to Hyster-Yale's ``Operator Assist System'' (OAS). 
-				\item You can see the work we do with OAS at \href{https://www.hyster.com/en-us/north-america/technology/telematics/hyster-reaction/}{Hyster Reaction} and \href{https://www.yale.com/en-us/north-america/technology/yale-reliant/}{Yale Reliant}.
-				\item Contributed to technical documentation and production release processes to ensure product quality, a robust life-cycle, and ensure industry standards were met.
-				\item Worked with cross-functional teams of other engineers, testers, and managers to shorten development times, enhance product knowledge, and reduce the ``bus factor''.
-            \end{itemize}	
-			\item Autonomous Ground Vehicle (AGV) Prototype
-            \begin{itemize} \itemsep -5pt {}
-				\item Worked on a small team to build an Autonomous Ground Vehicle (AGV) prototype using the NVIDIA Isaac ecosystem and ROS2.
-				\item Trained custom stabilization model using IMU data to improve the AGV's stability on uneven terrain and to optimize speed.
-				\item Integrated various sensors, including LiDAR and cameras, to enhance the AGV's environmental awareness, obstacle avoidance, and object detection capabilities.
-			\end{itemize}			
-		\end{itemize}
+\textit{Innovation Team} \hfill Aug 2024 - Dec 2025
+\begin{itemize}\itemsep -3pt
+\item Developed C middleware connecting CAN bus data to a Simulink model for Operator Assist Systems on an ARM-based ECU.
+\item Packed CANopen PDO signals, parsed SDO messages, and exposed debugging signals.
+\end{itemize}
 
-		Hyster-Yale Materials Handling - \textit{Global Tools Team} \hfill \textit{Fairview, OR}
-		\begin{itemize} \itemsep -5pt {}
-			\item Developed and maintained C$^\sharp$ applications used for internal tools that interface with Hyster and Yale forklifts.
-			\item Worked directly with cross-functional teams to gather requirements, design features, and implement solutions that improved tool efficiency and user experience.
-			\item Implemented automated testing and continuous integration processes to enhance software reliability and reduce deployment times.
-		\end{itemize}
+\textbf{Music World} \hfill Oct 2013 - Jan 2025 \\
+Assistant Manager \hfill \textit{Vancouver, WA}
+\begin{itemize}\itemsep -3pt
+\item Led weekend store operations, supervised associates, and trained and mentored staff.
+\item Created training guides and checklists to support employee onboarding and consistent store procedures.
+\end{itemize}
+\end{rSection}
 
-		\textbf{Intern} \hfill Sept 2022 - May 2023 \\
-		Seasalt.AI \hfill \textit{Remote}
-		\begin{itemize} \itemsep -5pt {} 
-			\item Helped build Vietnamese and Indonesian Language Models used for Automated Speech Recognition.
-			\item Used Kaldi and K2 to build Acoustic Models.
-			\item Used Time Delay Neural Network to retrain our Vietnamese model and minimize Word Error Rate.
-		\end{itemize}
-	
-		\textbf{Assistant Manager} \hfill Oct 2013 - Jan 2025 \\
-		Music World \hfill \textit{Vancouver, WA}
-		\begin{itemize} \itemsep -5pt {} 
-			\item Managed small team of $\sim$4.
-			\item Regularly trained new hires and mentored associates. 
-			\item Created training materials and documentation to share knowledge and speed up on-boarding.
-		\end{itemize}
-	\end{rSection} 
+\begin{rSection}{Academic Experience}
+\textbf{Software Engineering Capstone} \hfill Sept 2022 - May 2023 \\
+Industry-sponsored project with Seasalt.AI
+\begin{itemize}\itemsep -3pt
+\item Adapted existing speech-recognition pipelines in Python for Vietnamese and Indonesian.
+\item Contributed failure-notification hooks for pipeline runs that could take up to eight hours before failing.
+\end{itemize}
 
-	%----------------------------------------------------------------------------------------
-	%	Projects
-	%----------------------------------------------------------------------------------------
-	
-	% \begin{rSection}{PROJECTS}
+\textbf{Embedded Systems Coursework} \hfill Washington State University
+\begin{itemize}\itemsep -3pt
+\item Used C and FreeRTOS on Raspberry Pi Pico/RP2040 for GPIO control, tasks, delays, and queues.
+\item Worked on software SPI master read/write routines and a slave exercise using GPIO interrupts and a queue passing data from an interrupt handler to a task.
+\end{itemize}
+\end{rSection}
 
-		% Website creation
-		% Resume repo with actions
-		%\textbf{Using SPI with GPIO Expander:} Working with a Raspberry Pi Nano and a GPIO expander, I wrote C code to communicate between the two devices using bit-banging. Device specifics can be found in my GitHub repository. You can see the code and project report write up \href{https://github.com/gloghry/CS466_sub/tree/working/lab4}{here}.
-
-	% \end{rSection} 
-
-
-	%----------------------------------------------------------------------------------------
-	%	EDUCATION
-	%----------------------------------------------------------------------------------------
-	\begin{rSection}{Education}
-		{\bf Bachelor of Computer Science} \hfill {Fall 2023} \\
-		\medskip{\emph{Washington State University} (WSU) \hfill{\emph{Vancouver, WA}}}\\
-		Relevant Coursework: Embedded Systems, Operating Systems, Assembly, Systems Programming, Software Design, Algorithms, Digital Forensics, Object Oriented Design.
-	\end{rSection}
-
-	%----------------------------------------------------------------------------------------
-	%	REFERENCES
-	%----------------------------------------------------------------------------------------
-	\vfill
-	\begin{center}
-		% \par{\scriptsize{References supplied upon request}}
-	\end{center}
-
-
+\begin{rSection}{Education}
+\textbf{B.S. in Computer Science} \hfill Fall 2023 \\
+Washington State University \hfill \textit{Vancouver, WA}
+\end{rSection}
 \end{document}
-
-
