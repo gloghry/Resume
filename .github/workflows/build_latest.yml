@@ -63,6 +63,32 @@ jobs:
             const fs = require('fs');
             const repo = context.repo;
             const tag = 'latest';
+            // This job holds the release concurrency lock. Check ancestry and
+            // the current branch here, since build completion order can differ
+            // from commit order and historical workflow runs can be rerun.
+            let publishedRef;
+            try {
+              ({data: publishedRef} = await github.rest.git.getRef({
+                ...repo, ref: `tags/${tag}`
+              }));
+            } catch (error) {
+              if (error.status !== 404) throw error;
+            }
+            if (publishedRef) {
+              const {data: comparison} = await github.rest.repos.compareCommitsWithBasehead({
+                ...repo, basehead: `${tag}...${context.sha}`
+              });
+              if (!['ahead', 'identical'].includes(comparison.status)) {
+                core.notice(`Skipping ${context.sha}: latest is newer or has diverged.`);
+                return;
+              }
+            }
+            const {data: main} = await github.rest.git.getRef({...repo, ref: 'heads/main'});
+            if (main.object.sha !== context.sha) {
+              core.notice(`Skipping ${context.sha}: main now points to ${main.object.sha}.`);
+              return;
+            }
+
             let release;
             try {
               ({data: release} = await github.rest.repos.getReleaseByTag({...repo, tag}));
@@ -108,7 +134,7 @@ jobs:
             try {
               await github.rest.git.getRef({...repo, ref: `tags/${tag}`});
               await github.rest.git.updateRef({
-                ...repo, ref: `tags/${tag}`, sha: context.sha, force: true
+                ...repo, ref: `tags/${tag}`, sha: context.sha, force: false
               });
             } catch (error) {
               if (error.status !== 404) throw error;
