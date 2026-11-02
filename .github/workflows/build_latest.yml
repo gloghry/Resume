@@ -3,11 +3,6 @@ name: Resume PDF Build
 on:
   push:
     branches: [main]
-    paths:
-      - 'resume.tex'
-      - 'resume.cls'
-      - 'makefile'
-      - '.github/workflows/build_latest.yml'
   pull_request:
     branches: [main]
     paths:
