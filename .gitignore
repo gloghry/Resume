@@ -9,9 +9,16 @@
 # Don't ignore these files
 !makefile
 !start.sh
+!issue-branch.sh
 !README.md
 !resume.tex
 !resume.cls
+!AGENTS.md
+!career/
+!career/*.md
+
+# Local application materials and sensitive notes must stay untracked.
+/private/
 
 # Don't ignore these directories
 !.github/

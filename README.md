@@ -14,7 +14,15 @@ Eligible successful builds on `main` update the [latest release](https://github.
 
 You can also select **Run workflow** in GitHub Actions. Manual runs on other branches build a review artifact; only `main` publishes.
 
-## Local Builds
+## Career knowledge and tailored résumés
+
+Start with [career/README.md](career/README.md) for source-backed facts, audience
+profiles, open review questions, and the Codex tailoring workflow for issue #15.
+Read [career/privacy.md](career/privacy.md) before adding personal or employer
+information to this public repository. Application inputs and drafts belong in
+ignored `private/`; existing public résumé versions and build tooling are preserved.
+
+## Building the public résumé locally
 
 To build the PDF locally, you'll need a LaTeX distribution installed. The following command installs the minimal required packages for Ubuntu:
 
@@ -31,6 +39,17 @@ make
 Optionally, you can `make clean` to remove all intermediary and output files.
 
 ## Local Development
+
+To update `main` from `origin` and create a branch for an issue, run:
+
+```bash
+bash issue-branch.sh 15 career-knowledge-base
+```
+
+This creates `issue15-career-knowledge-base`. Commit or stash local changes first.
+The script fetches `origin`, fast-forwards `main`, and creates the branch locally.
+It stops if the branch already exists locally or on `origin`, or if local `main`
+has commits outside `origin/main`.
 
 There is a bash script, `start.sh`, which can be used in a Ubuntu 24.04 LTS environment to start/terminate a PDF Viewer, and gnome text editor together.
 
