@@ -1,5 +1,9 @@
 # Public repository and private application material
 
+See [storage.md](storage.md) for the proposed private Resume repository and PDF-only website publishing, encrypted
+backup helper, migration and recovery procedure, and rollout status for #18.
+Until rollout is complete, ignored application files still have no remote backup.
+
 ## Findings from this repository
 
 - `resume.tex` on main and both reviewed historical branches contains a personal

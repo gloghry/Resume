@@ -10,6 +10,7 @@ the repository, not independent employment or credential verification.
 - [Audiences](audiences.md): selection and emphasis, never new evidence.
 - [Tailoring](tailoring.md): Codex workflow and local build instructions.
 - [Privacy](privacy.md): publication review and local-only material.
+- [Private storage and recovery](storage.md): proposed architecture and rollout for #18.
 
 ## Metadata contract
 
