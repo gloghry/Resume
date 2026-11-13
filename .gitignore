@@ -14,5 +14,9 @@
 !resume.cls
 
 # Don't ignore these directories
+!career/
+!career/knowledge.md
+!career/review.md
+!career/tailoring.md
 !.github/
 !.github/workflows/

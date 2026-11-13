@@ -2,6 +2,14 @@
 
 Hi, thanks for checking out my resume repo. This is intended to be a source for my website, which will use the latest generated pdf, but it also shows some CI/CD work with GitHub actions.
 
+## Career knowledge and tailoring
+
+The [career knowledge base](career/knowledge.md) collects sourced résumé
+claims, while the [review queue](career/review.md) tracks details needing
+confirmation. The [tailoring guide](career/tailoring.md) provides audience
+profiles and a workflow for producing evidence-based versions without
+overwriting the existing résumé.
+
 ## Automated Builds
 
 This repo uses GitHub Actions to produce a pdf from the source tex file. To see this workflow, go [here](https://github.com/gloghry/Resume/blob/main/.github/workflows/build_latest.yml).
