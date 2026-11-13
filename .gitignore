@@ -9,6 +9,7 @@
 # Don't ignore these files
 !makefile
 !start.sh
+!issue-branch.sh
 !README.md
 !resume.tex
 !resume.cls

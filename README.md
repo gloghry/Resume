@@ -32,6 +32,17 @@ Optionally, you can `make clean` to remove all intermediary and output files.
 
 ## Local Development
 
+To update `main` from `origin` and create a branch for an issue, run:
+
+```bash
+bash issue-branch.sh 15 career-knowledge-base
+```
+
+This creates `issue15-career-knowledge-base`. Commit or stash local changes first.
+The script fetches `origin`, fast-forwards `main`, and creates the branch locally.
+It stops if the branch already exists locally or on `origin`, or if local `main`
+has commits outside `origin/main`.
+
 There is a bash script, `start.sh`, which can be used in a Ubuntu 24.04 LTS environment to start/terminate a PDF Viewer, and gnome text editor together.
 
 This uses the package `latexmk`, but isn't required for building.
