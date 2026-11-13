@@ -14,7 +14,15 @@ Eligible successful builds on `main` update the [latest release](https://github.
 
 You can also select **Run workflow** in GitHub Actions. Manual runs on other branches build a review artifact; only `main` publishes.
 
-## Local Builds
+## Career knowledge and tailored résumés
+
+Start with [career/README.md](career/README.md) for source-backed facts, audience
+profiles, open review questions, and the Codex tailoring workflow for issue #15.
+Read [career/privacy.md](career/privacy.md) before adding personal or employer
+information to this public repository. Application inputs and drafts belong in
+ignored `private/`; existing public résumé versions and build tooling are preserved.
+
+## Building the public résumé locally
 
 To build the PDF locally, you'll need a LaTeX distribution installed. The following command installs the minimal required packages for Ubuntu:
 
