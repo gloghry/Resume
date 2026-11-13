@@ -10,6 +10,7 @@
 !makefile
 !start.sh
 !issue-branch.sh
+!backup-private.sh
 !README.md
 !resume.tex
 !resume.cls

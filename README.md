@@ -22,6 +22,12 @@ Read [career/privacy.md](career/privacy.md) before adding personal or employer
 information to this public repository. Application inputs and drafts belong in
 ignored `private/`; existing public résumé versions and build tooling are preserved.
 
+Ignored files have no remote backup. The [private storage and recovery plan](career/storage.md)
+proposes making Resume private, publishing only the approved PDF to the website,
+and keeping encrypted independent backups; rollout
+is tracked in #18. The `backup-private.sh` helper backs up committed Git history
+after that storage is configured; it does not include ignored working files.
+
 ## Building the public résumé locally
 
 To build the PDF locally, you'll need a LaTeX distribution installed. The following command installs the minimal required packages for Ubuntu:
