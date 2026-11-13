@@ -5,6 +5,7 @@ the repository, not independent employment or credential verification.
 
 - [Facts](facts.md): reusable, narrowly stated experience and skills.
 - [Sources](sources.md): immutable revisions reviewed and evidence policy.
+- [Evidence navigation](knowledge.md): pinned source lines for facts and review items.
 - [Review](review.md): conflicts, unsupported details, interests, and questions.
 - [Audiences](audiences.md): selection and emphasis, never new evidence.
 - [Tailoring](tailoring.md): Codex workflow and local build instructions.

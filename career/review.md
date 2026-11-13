@@ -3,6 +3,8 @@
 Everything here is ineligible for résumé claims until confirmed and promoted to
 a source-backed fact. Keep answers containing sensitive details in `private/`.
 Source IDs resolve to immutable revisions in sources.md.
+The [evidence navigation](knowledge.md#historical-claims-awaiting-confirmation)
+links directly to source lines for the historical claims below.
 
 | ID | Source / locator | Question or uncertainty | Conservative treatment |
 | --- | --- | --- | --- |

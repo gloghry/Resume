@@ -11,6 +11,8 @@ Reviewed branch snapshots (all paths are `resume.tex` unless stated otherwise):
 
 Read a snapshot without switching branches:
 
+For clickable source files and line-level evidence, see [knowledge.md](knowledge.md).
+
 ```bash
 git show bfd5eca7871c6a1107b92f3f3a4d52bdbdea16ce:resume.tex
 git show a870349dd6c26b0d2f75d8c434f04eecde61b968:resume.tex

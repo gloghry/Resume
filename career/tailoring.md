@@ -7,10 +7,14 @@
    consult the official employer or program source and record the retrieval date.
 2. Extract requirements and distinguish mandatory requirements, preferences,
    format/length constraints, and questions. Choose an audience profile in
-   audiences.md, adapting emphasis to the actual requirements.
+   audiences.md, combining profiles if helpful and adapting emphasis to the actual
+   requirements. Capture deadline and intended output location when supplied.
 3. Make a local evidence matrix. Match each requirement to eligible fact IDs;
    record evidence context and gaps. Review items and interests cannot fill gaps.
    Use the metadata for retrieval, then read the full fact and its limitations.
+   Use knowledge.md for pinned source-line links. Rank matches by relevance,
+   recency, specificity, and strength of evidence; a skills list is weaker support
+   than a concrete contribution in the required context.
 4. Resolve material conflicts with the applicant. If unresolved, omit the claim
    or use the narrower supported wording. Record outstanding questions locally.
    Never fabricate metrics, inflate academic work into employment, imply people
