@@ -10,6 +10,7 @@ the repository, not independent employment or credential verification.
 - [Audiences](audiences.md): selection and emphasis, never new evidence.
 - [Tailoring](tailoring.md): Codex workflow and local build instructions.
 - [Privacy](privacy.md): publication review and local-only material.
+- [WSU METM application](wsu-metm.md): local deliverables, build command, and review status for #16.
 
 ## Metadata contract
 
