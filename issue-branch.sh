@@ -19,11 +19,15 @@ if git show-ref --verify --quiet "refs/heads/$branch"; then
     exit 1
 fi
 
-git fetch origin
-if git show-ref --verify --quiet "refs/remotes/origin/$branch"; then
+if ! remote_branch=$(git ls-remote --heads origin "refs/heads/$branch"); then
+    echo "Could not check branches on origin; stopping." >&2
+    exit 1
+fi
+if [[ -n $remote_branch ]]; then
     echo "Remote branch already exists: $branch" >&2
     exit 1
 fi
+git fetch origin refs/heads/main:refs/remotes/origin/main
 git show-ref --verify "refs/remotes/origin/main" >/dev/null
 if git show-ref --verify --quiet refs/heads/main; then
     if ! git merge-base --is-ancestor main origin/main; then
