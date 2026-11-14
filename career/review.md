@@ -25,3 +25,23 @@ links directly to source lines for the historical claims below.
 When resolved, record the fact ID, confirmation date, nonsensitive provenance,
 scope, and publication decision. A private answer is not permission to publish.
 Do not replace these questions with confidential answers in public commits.
+
+## Scoped resolutions — applicant confirmations 2026-11-13/14
+
+R8: `college-bash-linux`, `college-java`, `testing-workflow` and
+`development-workflow` record confirmed scope with sources in sources.md.
+Java supports introductory coursework only. Other languages and broader CI/CD
+ownership remain unconfirmed. Stryker remains exploration.
+R6: `simulink-diagnostics` supports limited diagnosis of existing models, with
+no model components added. Broader model-development claims remain unconfirmed.
+R7: Standards-based J1939/UDS implementation and broader robotics claims remain
+ineligible. Detailed private confirmations are held in ignored local notes.
+R8: `ml-tool-exposure` permits the tool names as additional exposure only;
+underlying project details remain excluded. The general draft omits this line
+for focus; it remains available for tailoring.
+R11: Applicant chose garettloghry.com and contact@garettloghry.com for the public
+header, with no phone number. This does not authorize other private contacts.
+
+Remaining questions: Are current employment dates and official degree wording
+still accurate? What concrete results, if any, can be disclosed for the failure
+investigation? Does any future skill claim exceed the confirmed scope above?

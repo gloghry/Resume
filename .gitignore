@@ -24,3 +24,9 @@
 # Don't ignore these directories
 !.github/
 !.github/workflows/
+
+# Explicit variant sources; generated PDFs/logs remain ignored.
+!resumes/
+!resumes/*.tex
+!tests/
+!tests/*.py

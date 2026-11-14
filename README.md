@@ -60,3 +60,12 @@ has commits outside `origin/main`.
 There is a bash script, `start.sh`, which can be used in a Ubuntu 24.04 LTS environment to start/terminate a PDF Viewer, and gnome text editor together.
 
 This uses the package `latexmk`, but isn't required for building.
+
+## Public and private résumé variants
+
+Use `make public` for `build/public/resume.pdf`, or `make private` with a local,
+ignored `private/contacts.tex` for `build/private/resume.pdf`. Both share content
+and layout. The public header uses garettloghry.com and contact@garettloghry.com,
+with no phone number. See [variant instructions and validation](career/variants.md).
+These targets do not publish; the existing default build/release remains unchanged
+until the website delivery rollout in #21/#22.
