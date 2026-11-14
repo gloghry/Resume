@@ -30,3 +30,38 @@ The local stashed firmware edits were inspected while preparing the branch but
 are not an authoritative knowledge-base source. They remain preserved in the
 stash and are not imported as additional verified facts. Existing branch versions,
 resume.tex, resume.cls, makefile, and publishing workflow are preserved.
+
+## Applicant confirmation: college tools (2026-11-13)
+
+Source ID: `applicant-college-tools-2026-11-13`. Applicant statement in the
+résumé skills discussion; not independent verification. Nonsensitive summary:
+used Bash for automation in a college Linux environment; used Ubuntu for over
+two years in college with command-line navigation and commands. Used Java in an
+introductory object-oriented programming course. Present-day Java readability
+was described as an estimate based on C# use, not demonstrated current proficiency.
+No exact academic dates, professional Linux administration, robotics stack
+expertise, or Java proficiency level were confirmed. Public résumé discussion
+supports adding the narrow Bash/Ubuntu skills; this is not employer disclosure
+approval or authorization to publish unrelated private information.
+
+## Applicant confirmation: testing and development workflow (2026-11-13)
+
+Source ID: `applicant-dev-workflow-2026-11-13`. Applicant statement in the
+résumé skills clarification discussion, not independent verification. Confirmed
+creating, maintaining and running CMock/NUnit tests, including failure diagnosis
+and requirement changes; team is exploring Stryker/mutation testing for NUnit.
+Used Jenkins pipeline builds and sometimes debugged broken pipelines; a separate
+DevOps team handled server health and credentials. Used Azure DevOps tickets,
+wikis, repositories and artifacts. Retrieved JFrog artifacts, including automated
+retrieval with its CLI. Occasionally helped diagnose existing Simulink model
+issues; added no model components. Exact project/team allocation and dates were
+not established. These generalized tool-use statements are eligible for the
+public draft, subject to final disclosure review.
+
+## Applicant publication choice: additional tool exposure (2026-11-14)
+
+Source ID: `applicant-ml-tool-disclosure-2026-11-14`. In the public résumé
+editing discussion, applicant agreed to disclose “Additional exposure: PyTorch,
+ONNX, NVIDIA Triton.” This is applicant confirmation of the narrow publication
+choice, not independent employer permission verification. Applicant described exploring these tools; project details are excluded. This
+does not authorize disclosing the underlying project or imply proficiency.
